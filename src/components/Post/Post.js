@@ -15,7 +15,7 @@ class Post extends Component{
     render(){
 
         return (
-            <article className="Post">
+            <article className="Post" onClick = {this.props.clicked}>
 
                 <h1>{this.props.title}</h1>
 

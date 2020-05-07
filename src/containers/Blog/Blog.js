@@ -5,18 +5,26 @@ import FullPost from '../../components/FullPost/FullPost';
 import NewPost from '../../components/NewPost/NewPost';
 import './Blog.css';
 
-import axios from 'axios';
+import Axios from 'axios';
 
 class Blog extends Component {
 
     state = {
-        posts : []
+        posts : [],
+        selectedPostId : null
+    }
+
+    selectPostHandler = (id) => {
+        this.setState( {selectedPostId : id} );
+        console.log("click handler - selected post ", id);
     }
 
     componentDidMount = () => {
         console.log("mounting the blog");
 
-        axios.get("https://jsonplaceholder.typicode.com/posts")
+        // here it returns a promise. 
+        // it runs asynchronously also, so we need to use the then method.
+        Axios.get("https://jsonplaceholder.typicode.com/posts")
              .then( response => {
                 console.log(response);
                 const updatedData = response.data.slice(0, 4).map(
@@ -40,7 +48,9 @@ class Blog extends Component {
         const posts = this.state.posts.map( 
             (post) => <Post title = {post.title}
                             author = {post.author}
-                            key = {post.id} />
+                            key = {post.id} 
+                            // just learn this way now, how we pass the id. 
+                            clicked = {()=>{this.selectPostHandler(post.id)}}/>
         );
 
         return (
@@ -50,7 +60,7 @@ class Blog extends Component {
                 </section>
 
                 <section>
-                    <FullPost />
+                    <FullPost id = { this.state.selectedPostId }/>
                 </section>
 
                 <section>
