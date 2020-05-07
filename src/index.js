@@ -12,7 +12,7 @@ import Axios from 'axios';
  */ 
 
  // requests from allover the app, come here first. 
-Axios.interceptors.request.use( request => {
+let interceptorDemo = Axios.interceptors.request.use( request => {
 
     console.log("---- interceptor ----");
     console.log(request);
@@ -50,7 +50,8 @@ Axios.interceptors.response.use( response => {
 
 });
 
-
+// to remove an interceptor if u want. 
+Axios.interceptors.request.eject(interceptorDemo);
 
 ReactDOM.render( <App />, document.getElementById( 'root' ) );
 registerServiceWorker();
