@@ -25,7 +25,7 @@ class Blog extends Component {
 
         // here it returns a promise. 
         // it runs asynchronously also, so we need to use the then method.
-        Axios.get("https://jsonplaceholder.typicode.com/postsss")
+        Axios.get("/posts")
              .then( response => {
                 console.log("*** got data from api inside [BLOG]");
                 console.log(response);

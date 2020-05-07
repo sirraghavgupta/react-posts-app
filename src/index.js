@@ -11,6 +11,20 @@ import Axios from 'axios';
  * and will work for all the requests. 
  */ 
 
+/**
+ * ideally, we should not use the complete path now while sending the requests. 
+ * but it still manages that automatically if we use the complete url. 
+ * i am doubt full, i need to check this. 
+ */
+Axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
+
+// common headers are there which are in every request
+Axios.defaults.headers.common['Authorization'] = 'AUTH_TOKEN';
+
+// by default, its application-json
+Axios.defaults.headers.post['Content-Type'] = 'application/json';
+
+
  // requests from allover the app, come here first. 
 let interceptorDemo = Axios.interceptors.request.use( request => {
 
@@ -51,7 +65,7 @@ Axios.interceptors.response.use( response => {
 });
 
 // to remove an interceptor if u want. 
-Axios.interceptors.request.eject(interceptorDemo);
+// Axios.interceptors.request.eject(interceptorDemo);
 
 ReactDOM.render( <App />, document.getElementById( 'root' ) );
 registerServiceWorker();

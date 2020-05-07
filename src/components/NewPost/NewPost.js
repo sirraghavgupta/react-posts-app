@@ -21,7 +21,7 @@ class NewPost extends Component {
     postPostHandler = () => {
         console.log("posting data");
         const data = {...this.state};
-        Axios.post("https://jsonplaceholder.typicode.com/posts", data)
+        Axios.post("/posts", data)
              .then( response => {
                  console.log(response);
              });
