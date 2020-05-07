@@ -6,6 +6,19 @@ import NewPost from '../../components/NewPost/NewPost';
 import './Blog.css';
 
 class Blog extends Component {
+
+    state = {
+        posts : null
+    }
+
+    componentDidMount = () => {
+        console.log("mounting the blog");
+    }
+    
+    componentDidUpdate = () => {
+        console.log("updating the blog");
+    }
+
     render () {
         return (
             <div>

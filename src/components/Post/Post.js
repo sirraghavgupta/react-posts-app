@@ -1,14 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import './Post.css';
 
-const post = (props) => (
-    <article className="Post">
-        <h1>Title</h1>
-        <div className="Info">
-            <div className="Author">Author</div>
-        </div>
-    </article>
-);
+class Post extends Component{
 
-export default post;
+    componentDidMount = () => {
+        console.log("mounting the post");
+    }
+    
+    componentDidUpdate = () => {
+        console.log("updating the post");
+    }
+
+    render(){
+
+        return (
+            <article className="Post">
+
+                <h1>Title</h1>
+
+                <div className="Info">
+                    <div className="Author">Author</div>
+                </div>
+
+            </article>
+        );
+    }
+}
+
+export default Post;
