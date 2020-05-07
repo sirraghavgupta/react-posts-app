@@ -11,7 +11,8 @@ class Blog extends Component {
 
     state = {
         posts : [],
-        selectedPostId : null
+        selectedPostId : null,
+        error : false
     }
 
     selectPostHandler = (id) => {
@@ -24,7 +25,7 @@ class Blog extends Component {
 
         // here it returns a promise. 
         // it runs asynchronously also, so we need to use the then method.
-        Axios.get("https://jsonplaceholder.typicode.com/posts")
+        Axios.get("https://jsonplaceholder.typicode.com/postssss")
              .then( response => {
                 console.log(response);
                 const updatedData = response.data.slice(0, 4).map(
@@ -36,7 +37,11 @@ class Blog extends Component {
                     }
                 );
                 this.setState( {posts : updatedData} );
-             });
+             }).catch( 
+                 error => {
+                    this.setState( { error:true } );
+                    console.log(error);
+                });
     }
     
     componentDidUpdate = () => {
@@ -45,13 +50,17 @@ class Blog extends Component {
 
     render () {
         
-        const posts = this.state.posts.map( 
-            (post) => <Post title = {post.title}
-                            author = {post.author}
-                            key = {post.id} 
-                            // just learn this way now, how we pass the id. 
-                            clicked = {()=>{this.selectPostHandler(post.id)}}/>
-        );
+        let posts = <p>Something went wrong!!!</p>
+
+        if(!this.state.error){
+            posts = this.state.posts.map( 
+                (post) => <Post title = {post.title}
+                                author = {post.author}
+                                key = {post.id} 
+                                // just learn this way now, how we pass the id. 
+                                clicked = {()=>{this.selectPostHandler(post.id)}}/>
+            );
+        }
 
         return (
             <div>
