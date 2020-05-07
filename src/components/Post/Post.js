@@ -13,6 +13,7 @@ class Post extends Component{
     }
 
     render(){
+        console.log("=== render of [POST]");
 
         return (
             <article className="Post" onClick = {this.props.clicked}>

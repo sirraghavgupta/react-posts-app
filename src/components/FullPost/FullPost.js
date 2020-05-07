@@ -46,6 +46,7 @@ class FullPost extends Component {
     }
 
     render () {
+        console.log("=== render of [FULLPOST]");
 
         let post = <p>Please select a Post!</p>;
 

@@ -28,6 +28,8 @@ class NewPost extends Component {
     }
 
     render () {
+        console.log("=== render of [NEWPOST]");
+
         return (
             <div className="NewPost">
 

@@ -25,8 +25,9 @@ class Blog extends Component {
 
         // here it returns a promise. 
         // it runs asynchronously also, so we need to use the then method.
-        Axios.get("https://jsonplaceholder.typicode.com/postssss")
+        Axios.get("https://jsonplaceholder.typicode.com/postsss")
              .then( response => {
+                console.log("*** got data from api inside [BLOG]");
                 console.log(response);
                 const updatedData = response.data.slice(0, 4).map(
                     (post) => {
@@ -40,6 +41,7 @@ class Blog extends Component {
              }).catch( 
                  error => {
                     this.setState( { error:true } );
+                    console.log("---- inside the local error hadler ----");
                     console.log(error);
                 });
     }
@@ -49,7 +51,8 @@ class Blog extends Component {
     }
 
     render () {
-        
+        console.log("=== render of [BLOG]");
+
         let posts = <p>Something went wrong!!!</p>
 
         if(!this.state.error){
