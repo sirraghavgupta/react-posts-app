@@ -17,7 +17,13 @@
 }
 
 .Blog a:hover,
-.Blog a:active{
+.Blog a:active,
+.Blog a.active{
     color : #f1923f;
+    text-decoration: underline;
 }
 
+.Blog a.my-active{
+    color: red;
+    background-color : yellow;
+}

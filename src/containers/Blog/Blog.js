@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Posts from '../Blog/Posts/Posts';
 import NewPost from './NewPost/NewPost';
 import './Blog.css';
-import { Route, Link } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 
 
 class Blog extends Component {
@@ -16,15 +16,21 @@ class Blog extends Component {
                     <nav>
                         <ul>
 
-                         <li><Link to = "/">Home</Link></li>
+                         <li><NavLink to = "/" 
+                                      exact
+                                      activeClassName = "my-active">Home</NavLink></li>
 
                          {/* <li><Link to = "/new-post">New Post</Link></li> */}
 
-                         <li><Link to = {{ 
+                         <li><NavLink to = {{ 
                              pathname : "/new-post",
                              hash : "submit",
                              search : "?quick-submit=true"
-                          }}>New Post</Link></li>
+                          }} 
+                          activeStyle = {{
+                              backgroundColor : 'lightgreen'
+                          }}
+                          >New Post</NavLink></li>
 
                         </ul>
                     </nav>
@@ -118,3 +124,28 @@ of the matching routes.
    * also, whether u write '/new-post' or 'new-post' while creating an 
    * absolute path, it will be the same at the end. 
    */
+
+
+   /**
+    * styling active links - 
+    * we need to use NavLink instead of Link.
+    * it comes with an active class added on the link when its active. 
+    * implementation of the class is to be provided by us. 
+    * we can use a different class though, by activeClassName prop.
+    * we can also give the inline style by activeStyle prop. 
+    * 
+    * note that we need to use exact because it considers the to prop as
+    * prefixes while matching. so, see below. 
+    */
+
+    /**
+     * PREFIXING - how it works. 
+     * if i try to visit /new-posts it considers all the links which act as 
+     * a prefix in this link, it renders them also. 
+     * like in /new and /new-post, it also shows the content of /
+     * same thing applies to styling also. 
+     * when i am on /new-post, it applies the styling to / also, as it 
+     * considers that its also active. 
+     * i am able to get the content of / in /new- also even though its not 
+     * a route. 
+     */
