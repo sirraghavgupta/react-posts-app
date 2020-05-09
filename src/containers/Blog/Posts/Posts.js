@@ -17,6 +17,8 @@ class Posts extends Component{
     componentDidMount = () => {
         console.log("mounting the posts component");
 
+        console.log(this.props);
+
         axios.get("/posts")
              .then( response => {
                 console.log("*** got data from api inside [POSTS]");

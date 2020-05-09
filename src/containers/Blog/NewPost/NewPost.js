@@ -12,6 +12,8 @@ class NewPost extends Component {
 
     componentDidMount = () => {
         console.log("mounting the new post");
+        console.log(this.props);
+
     }
     
     componentDidUpdate = () => {
