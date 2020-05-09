@@ -26,9 +26,9 @@ Axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
  // requests from allover the app, come here first. 
-let interceptorDemo = Axios.interceptors.request.use( request => {
+Axios.interceptors.request.use( request => {
 
-    console.log("---- interceptor ----");
+    console.log("---- requst interceptor success----");
     console.log(request);
     /**
      * here we can modify the request as well. 
@@ -43,7 +43,7 @@ let interceptorDemo = Axios.interceptors.request.use( request => {
      * sending of the request. 
      */
     
-    console.log("---- interceptor ----");
+    console.log("---- request interceptor failure----");
     console.log(error);
     // this is to send the error back to the component for local handling if we want.
     return Promise.reject(error);
@@ -52,13 +52,13 @@ let interceptorDemo = Axios.interceptors.request.use( request => {
 
 
 Axios.interceptors.response.use( response => {
-    console.log("---- interceptor ----");
+    console.log("---- response interceptor success----");
     console.log(response);
 
     return response;
 
 }, error => {
-    console.log("---- interceptor ----");
+    console.log("----response interceptor failure----");
     console.log(error);
     return Promise.reject(error);
 

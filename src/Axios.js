@@ -10,14 +10,14 @@ axiosInstance.defaults.headers.common['Authorization'] = 'AUTH_TOKEN_OTHER';
 
 axiosInstance.interceptors.request.use( request => {
 
-    console.log("---- interceptor ----");
+    console.log("----request interceptor success----");
     console.log(request);
 
     return request;
 
 }, error => {
     
-    console.log("---- interceptor ----");
+    console.log("----request interceptor failure----");
     console.log(error);
     return Promise.reject(error);
 
