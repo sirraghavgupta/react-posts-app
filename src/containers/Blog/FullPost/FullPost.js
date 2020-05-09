@@ -18,7 +18,9 @@ class FullPost extends Component {
                 .then( response => {
                     console.log(response);
                     this.setState({ loadedPost : response.data });
-                } )
+                } ).catch( error => {
+                    console.log(error);
+                });
         }
     }
     
@@ -46,7 +48,7 @@ class FullPost extends Component {
             }
             post = (
                 <div className="FullPost">
-    
+
                     <h1>{ this.state.loadedPost.title }</h1>
     
                     <p>{ this.state.loadedPost.body }</p>

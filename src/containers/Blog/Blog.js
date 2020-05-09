@@ -3,7 +3,7 @@ import Posts from '../Blog/Posts/Posts';
 import NewPost from './NewPost/NewPost';
 import FullPost from './FullPost/FullPost';
 import './Blog.css';
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, Switch } from 'react-router-dom';
 
 
 class Blog extends Component {
@@ -46,10 +46,10 @@ class Blog extends Component {
                 of the functional or the class component. */}
                 <Route path='/' exact component = {Posts}/>
 
-                <Route path='/new-post' component = {NewPost} />
-
-                <Route path='/:id' component = {FullPost} />
-
+                <Switch>
+                    <Route path='/new-post' component = {NewPost} />
+                    <Route path='/:id' component = {FullPost} />
+                </Switch>
 
             </div>
         );
@@ -153,3 +153,18 @@ of the matching routes.
      * i am able to get the content of / in /new- also even though its not 
      * a route. 
      */
+
+
+     /**
+      * SWITCH ===== 
+      * /new-post
+      * /:id
+      * if we place the routes in this order, then when we load the full post, 
+      * it works fine but when we load new post, it renders the full post also 
+      * with the old id. 
+      * this is bcoz react always renders all the routes which match and 
+      * new-post also matched :id.
+      * 
+      * so, we have Switch component which tells react to load only one of the 
+      * routes which are inside the switch. the first one that matches. 
+      */
