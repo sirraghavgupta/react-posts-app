@@ -16,17 +16,7 @@ class FullPost extends Component {
     componentDidUpdate = () => {
         console.log("updating the full post");
         console.log("component did update - post id ", this.props.id);
-
-        /**
-         * here we need to understand that we set the state and it will create 
-         * an infinite loop because it will again trigger the render cycle. 
-         * so, we need to test that whether we really want to update or not. 
-         * 
-         * second, the setState method will not set the state immediately. 
-         * so, when we render the data, it will give error as no state will 
-         * be found for the first time. so, we need to check that condition 
-         * and handle that. 
-         */
+        
         if( this.props.id && ( this.state.loadedPost==null || this.props.id!==this.state.loadedPost.id) ){
             Axios.get("/posts/" + this.props.id)
                 .then( response => {

@@ -24,8 +24,6 @@ class Blog extends Component {
     componentDidMount = () => {
         console.log("mounting the blog");
 
-        // here it returns a promise. 
-        // it runs asynchronously also, so we need to use the then method.
         Axios.get("/posts")
              .then( response => {
                 console.log("*** got data from api inside [BLOG]");
@@ -61,7 +59,6 @@ class Blog extends Component {
                 (post) => <Post title = {post.title}
                                 author = {post.author}
                                 key = {post.id} 
-                                // just learn this way now, how we pass the id. 
                                 clicked = {()=>{this.selectPostHandler(post.id)}}/>
             );
         }
