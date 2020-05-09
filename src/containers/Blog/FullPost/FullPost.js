@@ -11,25 +11,25 @@ class FullPost extends Component {
 
     componentDidMount = () => {
         console.log("mounting the full post");
-    }
-    
-    componentDidUpdate = () => {
-        console.log("updating the full post");
-        console.log("component did update - post id ", this.props.id);
-        
-        if( this.props.id && ( this.state.loadedPost==null || this.props.id!==this.state.loadedPost.id) ){
-            Axios.get("/posts/" + this.props.id)
+        console.log("componentDidMount - post id ", this.props.match.params.id);
+        console.log(this.props);
+        if( this.props.match.params.id && ( this.state.loadedPost==null || this.props.match.params.id!==this.state.loadedPost.id) ){
+            Axios.get("/posts/" + this.props.match.params.id)
                 .then( response => {
                     console.log(response);
                     this.setState({ loadedPost : response.data });
                 } )
         }
     }
+    
+    componentDidUpdate = () => {
+        console.log("updating the full post");
+    }
 
     deletePostHandler = () => {
         console.log("inside delete handler");
         
-        Axios.delete("/posts/" + this.props.id)
+        Axios.delete("/posts/" + this.props.match.params.id)
              .then( response => {
                  console.log(response); 
              });
@@ -40,7 +40,7 @@ class FullPost extends Component {
 
         let post = <p>Please select a Post!</p>;
 
-        if(this.props.id){
+        if(this.props.match.params.id){
             if( !this.state.loadedPost ){
                 return <p>Loading...</p>;
             }

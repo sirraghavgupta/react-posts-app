@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Post from '../../../components/Post/Post';
 import axios from '../../../Axios';
 import './Posts.css';
+import { Link } from 'react-router-dom';
 
 class Posts extends Component{
 
@@ -11,13 +12,12 @@ class Posts extends Component{
 
     selectPostHandler = (id) => {
         console.log("click handler - selected post ", id);
-        this.setState( {selectedPostId : id} );
     }
 
     componentDidMount = () => {
         console.log("mounting the posts component");
 
-        console.log(this.props);
+        // console.log(this.props);
 
         axios.get("/posts")
              .then( response => {
@@ -49,12 +49,17 @@ class Posts extends Component{
 
         if(!this.state.error){
             posts = this.state.posts.map( 
-                (post) => <Post title = {post.title}
-                                author = {post.author}
-                                key = {post.id} 
-                                // {...this.props}
-                                clicked = {()=>{this.selectPostHandler(post.id)}}/>
-            );
+                (post) => (
+                    <Link to={"/" + post.id}
+                          key = {post.id} >
+                              
+                        <Post title = {post.title}
+                              author = {post.author}
+                              // {...this.props}
+                              clicked = {()=>{this.selectPostHandler(post.id)}}
+                        />
+                    </Link>)
+                    );
         }
 
         return (
