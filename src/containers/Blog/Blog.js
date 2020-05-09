@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Posts from '../Blog/Posts/Posts';
+import NewPost from './NewPost/NewPost';
 import './Blog.css';
 import { Route } from 'react-router-dom';
 
@@ -27,7 +28,9 @@ class Blog extends Component {
 
                 {/* we use the component prop and we need to pass a refernce 
                 of the functional or the class component. */}
-                <Route path='/' component = {Posts}/>
+                <Route path='/' exact component = {Posts}/>
+
+                <Route path='/new-post' component = {NewPost} />
 
             </div>
         );
@@ -54,3 +57,10 @@ itself with what render returns.
 it checks each and every route component on the page and render all
 of the matching routes. 
  */
+
+ /**
+  * however we are able to click the links to render different pages, 
+  * actually the whole app is getting reloaded. which is not desired. 
+  * and we didnt use react for this thing. 
+  * so, we need to correct this so that we rerender the app, not reload. 
+  */
