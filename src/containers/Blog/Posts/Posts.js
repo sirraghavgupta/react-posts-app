@@ -12,6 +12,8 @@ class Posts extends Component{
 
     selectPostHandler = (id) => {
         console.log("click handler - selected post ", id);
+        // this is the way we make requests programatically. 
+        this.props.history.push("/"+id);
     }
 
     componentDidMount = () => {
@@ -50,15 +52,17 @@ class Posts extends Component{
         if(!this.state.error){
             posts = this.state.posts.map( 
                 (post) => (
-                    <Link to={"/" + post.id}
-                          key = {post.id} >
-                              
+                    // <Link to={"/" + post.id}
+                    //       key = {post.id} >
+
                         <Post title = {post.title}
                               author = {post.author}
                               // {...this.props}
+                              key = {post.id}
                               clicked = {()=>{this.selectPostHandler(post.id)}}
                         />
-                    </Link>)
+                    // </Link>
+                    )
                     );
         }
 
@@ -72,3 +76,26 @@ class Posts extends Component{
 }
 
 export default Posts;
+
+/**
+ * if we want to make a requests programatically, then we can use the 
+ * history object in the route props. it gives several methods like 
+ * goForward and goBack also which are just same as the backward and forward 
+ * arrow buttons in the browser. 
+ * these pages are just like a stack where we want to go back means the previous 
+ * page in the stack. and forward means the page which was last popped.
+ * kind of stuff. 
+ */
+
+
+ /**
+  * one issue we encountered in the app is that, 
+  * our home page is named /
+  * now, its showing the posts. 
+  * when we show the full post, no link is active. 
+  * but it should be there. so, if we rename home to posts, then it should be the 
+  * one to be active. but unfortunately we cant do that because of the routing 
+  * behaviour. bcoz if we remove the exact prop, then it starts getting highlighed 
+  * on new-posts route also. so, we need to change the route from / to /posts 
+  * actually.       
+  */
