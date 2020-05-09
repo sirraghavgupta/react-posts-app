@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Posts from '../Blog/Posts/Posts';
 import NewPost from './NewPost/NewPost';
 import './Blog.css';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 
 
 class Blog extends Component {
@@ -15,8 +15,17 @@ class Blog extends Component {
                 <header>
                     <nav>
                         <ul>
-                        <li><a href = "/">Home</a></li>
-                        <li><a href = "/new-post">New Post</a></li>
+
+                         <li><Link to = "/">Home</Link></li>
+
+                         {/* <li><Link to = "/new-post">New Post</Link></li> */}
+
+                         <li><Link to = {{ 
+                             pathname : "/new-post",
+                             hash : "submit",
+                             search : "?quick-submit=true"
+                          }}>New Post</Link></li>
+
                         </ul>
                     </nav>
                 </header>
@@ -60,7 +69,20 @@ of the matching routes.
 
  /**
   * however we are able to click the links to render different pages, 
-  * actually the whole app is getting reloaded. which is not desired. 
-  * and we didnt use react for this thing. 
+  * actually the whole app is getting reloaded and the state gets lost.
+  * which is not desired. and we didnt use react for this thing. 
+  * this actually is happening because of the a tags. they work like that. 
   * so, we need to correct this so that we rerender the app, not reload. 
   */
+
+
+/**
+ *  now link tag is internally the a tag which is 
+ *  managed by react so that it doesnt reload the app.
+ * 
+ *  we can give additional props inside the to prop in the form of JS object.
+ *  like hash - we give the id of an element here, and we can jump to that 
+ *  on the page by this. its the normal use.
+ *  
+ * search is used to give query parameters. 
+ */
