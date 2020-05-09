@@ -44,7 +44,7 @@ class Posts extends Component{
     }
 
     render(){
-        console.log("=== render of [POST]");
+        console.log("=== render of [POSTS]");
         let posts = <p>Something went wrong!!!</p>
 
         if(!this.state.error){
@@ -52,6 +52,7 @@ class Posts extends Component{
                 (post) => <Post title = {post.title}
                                 author = {post.author}
                                 key = {post.id} 
+                                // {...this.props}
                                 clicked = {()=>{this.selectPostHandler(post.id)}}/>
             );
         }

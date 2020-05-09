@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { withRouter } from 'react-router-dom';
 import './Post.css';
 
 class Post extends Component{
@@ -14,6 +14,7 @@ class Post extends Component{
 
     render(){
         console.log("=== render of [POST]");
+        console.log(this.props);
 
         return (
             <article className="Post" onClick = {this.props.clicked}>
@@ -29,4 +30,5 @@ class Post extends Component{
     }
 }
 
-export default Post;
+// it passes on the props of the nearest route to the child component also. 
+export default withRouter(Post);
