@@ -1,14 +1,30 @@
 import React, { Component } from 'react';
 import Posts from '../Blog/Posts/Posts';
-import NewPost from './NewPost/NewPost';
+// import NewPost from './NewPost/NewPost';
 import './Blog.css';
 import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
+import asyncComponent from '../../hoc/asyncComponent/asyncComponent';
+
+/**
+ * when we write normal import statements, we are just telling the webpack 
+ * to bundle that together. 
+ * in this new syntax of creating a const, we are just telling the compiler
+ * to create a separate chunk for this component. 
+ * we can see this extra chunk in the network tab in dev tools also. 
+ */
+const AsyncNewPost = asyncComponent( ()=> {
+    /**
+     * this import method says that it will import whatever is written in the 
+     * parenthesis, dynamically. it also comes with create-react-app setup. 
+     */
+    return import('./NewPost/NewPost');
+} );
 
 
 class Blog extends Component {
 
     state = {
-        authenticated : false
+        authenticated : true
     }
 
     componentDidMount = () => {
@@ -63,7 +79,7 @@ class Blog extends Component {
                 <Switch>    
 
                     {this.state.authenticated ? 
-                        <Route path='/new-post' component = {NewPost} /> : 
+                        <Route path='/new-post' component = {AsyncNewPost} /> : 
                         null}
                     <Route path='/posts' component = {Posts}/>
                     
