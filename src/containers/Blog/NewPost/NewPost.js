@@ -31,9 +31,17 @@ class NewPost extends Component {
         Axios.post("/posts", data)
              .then( response => {
                  console.log(response);
-                 this.setState(
-                     {redirect : true}
-                 );
+                 // one method
+                //  this.setState({redirect : true});
+
+/**
+ * the point is that when we use push, we push a page on to the stack, so we 
+ * can go back to the previous page. 
+ * but, if we use replace, we replace a page on the top of stack and then 
+ * we cant go back to the same page again. 
+ */
+                // this.props.history.push("/posts");
+                this.props.history.replace("/posts");
              });
     }
 
