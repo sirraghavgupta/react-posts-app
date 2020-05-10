@@ -12,14 +12,14 @@ class Posts extends Component{
     }
 
     selectPostHandler = (id) => {
-        console.log("click handler - selected post ", id);
+        console.log("post click handler - selected post ", id);
         // this is the way we make requests programatically. 
         this.props.history.push(this.props.match.url+'/'+id);
         // this.props.history.push('/posts/'+id);
     }
 
     componentDidMount = () => {
-        console.log("mounting the posts component");
+        console.log("mounting [ POSTS ]");
 
         // console.log(this.props);
 
@@ -43,13 +43,16 @@ class Posts extends Component{
                 });
     }
     
+    componentWillUnmount = ()=>{
+        console.log("unmounting [ POSTS ]");
+    }
 
     componentDidUpdate = () => {
-        console.log("updating the blog");
+        console.log("updating [ POSTS ]");
     }
 
     render(){
-        console.log("=== render of [POSTS]");
+        console.log("rendering [ POSTS ]");
         let posts = <p>Something went wrong!!!</p>
 
         if(!this.state.error){

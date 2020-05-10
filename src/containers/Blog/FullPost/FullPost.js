@@ -10,9 +10,9 @@ class FullPost extends Component {
     }
 
     componentDidMount = () => {
-        console.log("mounting the full post");
-        console.log("componentDidMount - post id ", this.props.match.params.id);
-        console.log(this.props);
+        console.log("mounting [ FULL POST ]");
+        // console.log("componentDidMount - post id ", this.props.match.params.id);
+        // console.log(this.props);
         this.loadData();
     }
     
@@ -23,9 +23,13 @@ class FullPost extends Component {
      * the componentDidMount() method also. 
      */
     componentDidUpdate = () => {
-        console.log("updating the full post");
-        console.log(this.props);
+        console.log("updating [ FULL POST ]");
+        // console.log(this.props);
         this.loadData();
+    }
+
+    componentWillUnmount = ()=>{
+        console.log("unmounting [ FULL POST ]");
     }
 
     loadData(){
@@ -55,7 +59,7 @@ class FullPost extends Component {
     }
 
     render () {
-        console.log("=== render of [FULLPOST]");
+        console.log("rendering [ FULL POST ]");
 
         let post = <p>Please select a Post!</p>;
 

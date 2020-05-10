@@ -5,16 +5,20 @@ import './Post.css';
 class Post extends Component{
 
     componentDidMount = () => {
-        console.log("mounting the post");
+        console.log("mounting [ POST ]");
     }
     
     componentDidUpdate = () => {
-        console.log("updating the post");
+        console.log("updating [ POST ]");
+    }
+
+    componentWillUnmount = ()=>{
+        console.log("unmounting [ POST ]");
     }
 
     render(){
-        console.log("=== render of [POST]");
-        console.log(this.props);
+        console.log("rendering [ POST ]");
+        // console.log(this.props);
 
         return (
             <article className="Post" onClick = {this.props.clicked}>

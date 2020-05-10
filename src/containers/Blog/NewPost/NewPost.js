@@ -13,17 +13,20 @@ class NewPost extends Component {
     }
 
     componentDidMount = () => {
-        console.log("mounting the new post");
-        console.log(this.props);
-
+        console.log("mounting [ NEW POST ]");
+        // console.log(this.props);
     }
     
     componentDidUpdate = () => {
-        console.log("updating the new post");
+        console.log("updating [ NEW POST ]");
+    }
+
+    componentWillUnmount = ()=>{
+        console.log("unmounting [ NEW POST ]");
     }
 
     postPostHandler = () => {
-        console.log("posting data");
+        console.log("posting data to server from new posts");
         const data = {...this.state};
         Axios.post("/posts", data)
              .then( response => {
@@ -35,12 +38,12 @@ class NewPost extends Component {
     }
 
     render () {
-        console.log("=== render of [NEWPOST]");
+        console.log("rendering [ NEWPOST ]");
         let redirect = null;
         if(this.state.redirect){
             redirect = <Redirect to="/posts"/>;
         }
-        
+
         return (
             <div className="NewPost">
 

@@ -7,8 +7,21 @@ import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 
 class Blog extends Component {
 
+    componentDidMount = () => {
+        console.log("mounting [ BLOG ]");
+        // console.log(this.props);
+    }
+    
+    componentDidUpdate = () => {
+        console.log("updating [ BLOG ]");
+    }
+
+    componentWillUnmount = ()=>{
+        console.log("unmounting [ BLOG ]");
+    }
+
     render () {
-        console.log("=== render of [BLOG]");
+        console.log("rendering [ BLOG ]");
 
         return (
             <div className = "Blog">
