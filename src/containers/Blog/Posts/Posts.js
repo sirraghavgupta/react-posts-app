@@ -15,6 +15,7 @@ class Posts extends Component{
         console.log("click handler - selected post ", id);
         // this is the way we make requests programatically. 
         this.props.history.push(this.props.match.url+'/'+id);
+        // this.props.history.push('/posts/'+id);
     }
 
     componentDidMount = () => {
