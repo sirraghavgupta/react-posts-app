@@ -13,7 +13,17 @@ class FullPost extends Component {
         console.log("mounting the full post");
         console.log("componentDidMount - post id ", this.props.match.params.id);
         console.log(this.props);
-        if( this.props.match.params.id && ( this.state.loadedPost==null || this.props.match.params.id!==this.state.loadedPost.id) ){
+        this.loadData();
+    }
+    
+    componentDidUpdate = () => {
+        console.log("updating the full post");
+        console.log(this.props);
+        this.loadData();
+    }
+
+    loadData(){
+        if( this.props.match.params.id && ( this.state.loadedPost==null || this.props.match.params.id != this.state.loadedPost.id) ){
             Axios.get("/posts/" + this.props.match.params.id)
                 .then( response => {
                     console.log(response);
@@ -22,10 +32,6 @@ class FullPost extends Component {
                     console.log(error);
                 });
         }
-    }
-    
-    componentDidUpdate = () => {
-        console.log("updating the full post");
     }
 
     deletePostHandler = () => {

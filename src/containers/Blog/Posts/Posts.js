@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Post from '../../../components/Post/Post';
 import axios from '../../../Axios';
 import './Posts.css';
-import { Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import FullPost from '../FullPost/FullPost';
 
 class Posts extends Component{
 
@@ -13,7 +14,7 @@ class Posts extends Component{
     selectPostHandler = (id) => {
         console.log("click handler - selected post ", id);
         // this is the way we make requests programatically. 
-        this.props.history.push("/"+id);
+        this.props.history.push("/posts/"+id);
     }
 
     componentDidMount = () => {
@@ -52,7 +53,7 @@ class Posts extends Component{
         if(!this.state.error){
             posts = this.state.posts.map( 
                 (post) => (
-                    // <Link to={"/" + post.id}
+                    // <Link to={"/posts/" + post.id}
                     //       key = {post.id} >
 
                         <Post title = {post.title}
@@ -63,13 +64,17 @@ class Posts extends Component{
                         />
                     // </Link>
                     )
+
                     );
         }
 
         return (
-            <section className="Posts">
-                {posts}
-            </section>
+            <div>
+                <section className="Posts">
+                    {posts}
+                </section>
+                <Route path={this.props.match.url + '/:id'} component = {FullPost} />
+            </div>
         );
     }
 

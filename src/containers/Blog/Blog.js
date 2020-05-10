@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Posts from '../Blog/Posts/Posts';
 import NewPost from './NewPost/NewPost';
-import FullPost from './FullPost/FullPost';
 import './Blog.css';
 import { Route, NavLink, Switch } from 'react-router-dom';
 
@@ -17,7 +16,7 @@ class Blog extends Component {
                     <nav>
                         <ul>
 
-                         <li><NavLink to = "/" 
+                         <li><NavLink to = "/posts" 
                                       exact
                                       activeClassName = "my-active">Home</NavLink></li>
 
@@ -44,11 +43,10 @@ class Blog extends Component {
 
                 {/* we use the component prop and we need to pass a refernce 
                 of the functional or the class component. */}
-                <Route path='/' exact component = {Posts}/>
 
-                <Switch>
+                <Switch>    
                     <Route path='/new-post' component = {NewPost} />
-                    <Route path='/:id' component = {FullPost} />
+                    <Route path='/posts' component = {Posts}/>
                 </Switch>
 
             </div>
