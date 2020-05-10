@@ -69,8 +69,11 @@ class Blog extends Component {
                     
                     {/* one way of redirection.
                     <Route path='/' component = {Posts}/> */}
-                   
-                    <Redirect from="/" to="/posts"/>
+        
+                {/* to handle 404 routes */}
+                <Route render = {()=><h1>Not Found</h1> }/>
+
+                    {/* <Redirect from="/" to="/posts"/> */}
 
                 </Switch>
 
@@ -206,3 +209,11 @@ of the matching routes.
  * another method is that we authenticate the user in componentDidMount and 
  * then redirect using push or replace methods.
  */
+
+ /**
+  * if we want to handle 404 routes, we see that we can either use redirect
+  * or we can use this Route with no path attribute and use the render method 
+  * with that as we did above. 
+  * it will catch everything which is not caught above that.
+  * but they noth will nott work together. 
+  */
