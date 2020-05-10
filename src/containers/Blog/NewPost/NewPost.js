@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 
 import './NewPost.css';
 import Axios from 'axios';
+import { Redirect } from 'react-router';
 
 class NewPost extends Component {
     state = {
         title: '',
         body: '',
-        author: 'Max'
+        author: 'Max',
+        redirect : false
     }
 
     componentDidMount = () => {
@@ -26,14 +28,23 @@ class NewPost extends Component {
         Axios.post("/posts", data)
              .then( response => {
                  console.log(response);
+                 this.setState(
+                     {redirect : true}
+                 );
              });
     }
 
     render () {
         console.log("=== render of [NEWPOST]");
-
+        let redirect = null;
+        if(this.state.redirect){
+            redirect = <Redirect to="/posts"/>;
+        }
+        
         return (
             <div className="NewPost">
+
+                {redirect}
 
                 <h1>Add a Post</h1>
 
