@@ -15,7 +15,10 @@ import asyncComponent from '../../hoc/asyncComponent/asyncComponent';
 const AsyncNewPost = asyncComponent( ()=> {
     /**
      * this import method says that it will import whatever is written in the 
-     * parenthesis, dynamically. it also comes with create-react-app setup. 
+     * parenthesis, dynamically. it also comes with create-react-app setup.
+     * 
+     * import method ensures that the component will be loaded only when its
+     * rendered.  
      */
     return import('./NewPost/NewPost');
 } );
