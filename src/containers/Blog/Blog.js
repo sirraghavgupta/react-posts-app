@@ -17,7 +17,6 @@ class Blog extends Component {
                         <ul>
 
                          <li><NavLink to = "/posts" 
-                                      exact
                                       activeClassName = "my-active">Home</NavLink></li>
 
                          {/* <li><Link to = "/new-post">New Post</Link></li> */}

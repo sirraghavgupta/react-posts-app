@@ -16,6 +16,12 @@ class FullPost extends Component {
         this.loadData();
     }
     
+    /**
+     * when we have a full post already rendered on the posts route, 
+     * and we click on another post, new props are sent by the route and it 
+     * starts the upgrade cycle. so, we need to get the data again in 
+     * the componentDidMount() method also. 
+     */
     componentDidUpdate = () => {
         console.log("updating the full post");
         console.log(this.props);
@@ -23,6 +29,11 @@ class FullPost extends Component {
     }
 
     loadData(){
+        /**
+         * here this.props.match.params.id is string, so either we need to 
+         * use != instead of !== or we can use + before that to convert it to
+         * number. - awesome. 
+         */
         if( this.props.match.params.id && ( this.state.loadedPost==null || this.props.match.params.id != this.state.loadedPost.id) ){
             Axios.get("/posts/" + this.props.match.params.id)
                 .then( response => {

@@ -14,7 +14,7 @@ class Posts extends Component{
     selectPostHandler = (id) => {
         console.log("click handler - selected post ", id);
         // this is the way we make requests programatically. 
-        this.props.history.push("/posts/"+id);
+        this.props.history.push(this.props.match.url+'/'+id);
     }
 
     componentDidMount = () => {
@@ -42,6 +42,7 @@ class Posts extends Component{
                 });
     }
     
+
     componentDidUpdate = () => {
         console.log("updating the blog");
     }
@@ -53,7 +54,7 @@ class Posts extends Component{
         if(!this.state.error){
             posts = this.state.posts.map( 
                 (post) => (
-                    // <Link to={"/posts/" + post.id}
+                    // <Link to={this.props.match.url+'/'+post.id}
                     //       key = {post.id} >
 
                         <Post title = {post.title}
@@ -73,6 +74,8 @@ class Posts extends Component{
                 <section className="Posts">
                     {posts}
                 </section>
+                 {/* we need this dynamic route because if in future, we change the 
+                 /posts route to something else, then it will break. */}
                 <Route path={this.props.match.url + '/:id'} component = {FullPost} />
             </div>
         );
